@@ -62,7 +62,7 @@ class MunicipioController extends Controller
      */
     public function show($id)
     {
-        if(!$municipio = $this->repository($id)){
+        if(!$municipio = $this->repository->find($id)){
             redirect()->back();
         }
 

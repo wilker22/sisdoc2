@@ -1,7 +1,7 @@
 @include('admin.includes.alerts')
 
 <div class="form-group">
-    <label for="name">Nome:</label>
+    <label for="nome">Nome:</label>
     <input type="text" name="nome" class="form-control" placeholder="Nome:" value="{{ $municipio->nome ?? old('nome') }}">
 </div>
 

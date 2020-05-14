@@ -24,7 +24,7 @@ class StoreUpdateMunicipio extends FormRequest
     public function rules()
     {
         return [
-            'name'          => "required|min:3|max:255|unique:municipios,nome",
+            'nome'          => "required|min:3|max:255|unique:municipios,nome",
             'descricao'   => 'nullable|min:3|max:1000',
 
         ];
