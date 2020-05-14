@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateMunicipio;
 use App\Models\Municipio;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,7 @@ class MunicipioController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.municipios.create');
     }
 
     /**
@@ -45,9 +46,12 @@ class MunicipioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateMunicipio $request)
     {
-        //
+        $this->repository->create($request->all());
+
+        return redirect()->route('municipios.index');
+
     }
 
     /**
@@ -58,7 +62,11 @@ class MunicipioController extends Controller
      */
     public function show($id)
     {
-        //
+        if(!$municipio = $this->repository($id)){
+            redirect()->back();
+        }
+
+        return view('admin.pages.municipios.show', compact('municipio'));
     }
 
     /**
@@ -69,7 +77,12 @@ class MunicipioController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(!$municipio = $this->repository->find($id)){
+            redirect()->back();
+        }
+
+
+        return view('admin.pages.municipios.edit', compact('municipio'));
     }
 
     /**
@@ -79,9 +92,15 @@ class MunicipioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateMunicipio $request, $id)
     {
-        //
+        if(!$municipio = $this->repository->find($id)){
+            redirect()->back();
+        }
+
+        $municipio->update($request->all());
+
+        return redirect()->route('municipios.index');
     }
 
     /**
@@ -92,6 +111,29 @@ class MunicipioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(!$municipio = $this->repository->find($id)){
+            redirect()->back();
+        }
+
+        $municipio->delete();
+
+        return redirect()->route('municipios.index');
+    }
+
+    public function search(Request $request)
+    {
+        $filters = $request->only('filter');//filter é nome do campo de pesquisa na index
+
+        $municipios = $this->repository
+                    ->where(function($query) use ($request){
+                        if($request->filter){
+                            $query->orwhere('descricao', 'LIKE', "%{$request->filter}%");
+                            $query->orwhere('nome','LIKE', "%{$request->filter}%");
+                        }
+                    })
+                    ->latest()
+                    ->paginate();
+
+        return view('admin.pages.municipios.index', compact('municipios','filters'));
     }
 }
