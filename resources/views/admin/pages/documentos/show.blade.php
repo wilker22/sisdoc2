@@ -13,18 +13,18 @@
           <div class="card-body">
             <ul>
                 <li><strong>ID: </strong> {{ $documento->id }}</li>
-                <li><strong>Tipo: </strong> {{ $documento->id }}</li>
-                <li><strong>Natureza: </strong> {{ $documento->id }}</li>
-                <li><strong>Município: </strong> {{ $documento->id }}</li>
-                <li><strong>Número: </strong> {{ $documento->id }}</li>
-                <li><strong>Origem: </strong> {{ $documento->id }}</li>
-                <li><strong>Data da Entrada: </strong> {{ $documento->id }}</li>
-                <li><strong>Assunto: </strong> {{ $documento->id }}</li>
-                <li><strong>Encaminhado para: </strong> {{ $documento->id }}</li>
-                <li><strong>Data do Encaminhamento: </strong> {{ $documento->id }}</li>
-                <li><strong>Providência: </strong> {{ $documento->descricao }}</li>
-                <li><strong>Data da Providência: </strong> {{ $documento->id }}</li>
-                <li><strong>Imagem: </strong> {{ $documento->id }}</li>
+                <li><strong>Tipo: </strong> {{ $documento->tipo }}</li>
+                <li><strong>Natureza: </strong> {{ $documento->natureza }}</li>
+                <li><strong>Município: </strong> {{ $documento->municipio->name }}</li>
+                <li><strong>Número: </strong> {{ $documento->numero }}</li>
+                <li><strong>Origem: </strong> {{ $documento->origem }}</li>
+                <li><strong>Data da Entrada: </strong> {{ $documento->data_entrada }}</li>
+                <li><strong>Assunto: </strong> {{ $documento->assunto }}</li>
+                <li><strong>Encaminhado para: </strong> {{ $documento->setor->sigla }}</li>
+                <li><strong>Data do Encaminhamento: </strong> {{ $documento->data_encaminhamento }}</li>
+                <li><strong>Providência: </strong> {{ $documento->providencia }}</li>
+                <li><strong>Data da Providência: </strong> {{ $documento->data_providencia }}</li>
+                <li><strong>Imagem: </strong> {{ $documento->imagem }}</li>
             </ul>
 
             @include('admin.includes.alerts')

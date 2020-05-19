@@ -12,7 +12,7 @@
     <div class="card">
         <div class="card-header">
           <div class="card-body">
-                <form action="{{ route('documentos.store') }}" class="form" method="POST">
+                <form action="{{ route('documentos.store') }}" class="form" method="POST" enctype="multipart/form-data">
                     @csrf
                     @include('admin.pages.documentos._partials.form')
                 </form>
