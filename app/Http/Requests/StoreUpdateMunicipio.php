@@ -23,9 +23,22 @@ class StoreUpdateMunicipio extends FormRequest
      */
     public function rules()
     {
+        $id = $this->segment(3);
+
         return [
-            'nome'          => "required|min:3|max:255|unique:municipios,nome",
+            'nome'        => "required|min:3|max:255|unique:municipios,nome,{id},id",
             'descricao'   => 'nullable|min:3|max:1000',
+
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => '*:attribute* é um campo de preenchimento obrigatório!',
+            'min' => 'O Campo *:attribute* deve ter no mínimo :min caracteres',
+            'max' => 'O Campo *:attribute* deve ter no máximo :max caracteres',
+            'unique' => 'Já existe um Munício com esse nome cadastrado, favor verificar com administrador do sistema.',
 
         ];
     }

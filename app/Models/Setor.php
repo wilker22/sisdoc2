@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Municipio extends Model
+class Setor extends Model
 {
-    protected $fillable = ['nome', 'descricao'];
+    protected $table = 'setores';
+
+    protected $filled = ['nome','sigla','descricao'];
 
     public function documentos()
     {

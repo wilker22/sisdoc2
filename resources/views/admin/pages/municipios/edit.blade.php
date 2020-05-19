@@ -12,7 +12,7 @@
     <div class="card">
         <div class="card-header">
           <div class="card-body">
-                <form action="{{ route('plans.update', $municipio->id) }}" class="form" method="POST">
+                <form action="{{ route('municipios.update', $municipio->id) }}" class="form" method="POST">
                     @csrf
                     @method('PUT')
 
