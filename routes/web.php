@@ -4,9 +4,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
                 ->namespace('Admin')
-                ->middleware('auth')
+                //->middleware('auth')
                 ->group(function(){
 
+
+    /**
+    * Routes Documentos
+    */
+    Route::any('documentos/search', 'DocumentoController@search')->name('documentos.search');
+    Route::resource('documentos', 'DocumentoController');
+
+    /**
+    * Routes Setores
+    */
+    Route::any('setores/search', 'SetorController@search')->name('setores.search');
+    Route::resource('setores', 'SetorController');
 
 
    /**
@@ -16,7 +28,7 @@ Route::prefix('admin')
     Route::resource('municipios', 'MunicipioController');
 
     //rota Admin
-    Route::get('/', 'MunicipioController@index')->name('admin.index');
+    Route::get('/', 'DocumentoController@index')->name('admin.index');
 
 });
 

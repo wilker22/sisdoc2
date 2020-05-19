@@ -209,6 +209,17 @@ return [
 
     'menu' => [
 
+
+        [
+            'text' => 'Documentos',
+            'url'  => 'admin/documentos',
+            'icon' => 'fas fa-file-alt',
+        ],
+        [
+            'text' => 'Setores',
+            'url'  => 'admin/setores',
+            'icon' => 'fas fa-sitemap',
+        ],
         [
             'text' => 'Municípios',
             'url'  => 'admin/municipios',
