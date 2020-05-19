@@ -130,4 +130,5 @@ class DocumentoController extends Controller
          })->paginate();
 
          return view('admin.pages.documentos.index', compact('filters', 'documentos'));
+    }
 }
